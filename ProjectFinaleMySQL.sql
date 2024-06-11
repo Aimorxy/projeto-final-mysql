@@ -194,3 +194,337 @@ CALL AddRecheios(9, 9);
 CALL AddRecheios(10, 10);
 CALL AddRecheios(11, 11);
 
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (1, 1);
+SET @id_pedido_0 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_0, 3, 2);  
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_0, 11, 1);  
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (1, 2);
+SET @id_pedido_0 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_0, 11, 2);  
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_0, 12, 1);  
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (1, 1);
+SET @id_pedido_1 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_1, 10, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_1, 12, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (3, 2);
+SET @id_pedido_1 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_1, 15, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_1, 10, 5);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (4, 2);
+SET @id_pedido_2 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_2, 11, 3);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_2, 13, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_3 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_3, 7, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_3, 6, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_4 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_4, 10, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_4, 13, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (10, 1);
+SET @id_pedido_5 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_5, 12, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_5, 14, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (8, 1);
+SET @id_pedido_6 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_6, 11, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_6, 6, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (7, 1);
+SET @id_pedido_7 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_7, 14, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_7, 3, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_8 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_8, 10, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_8, 12, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_9 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_9, 13, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_9, 15, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (7, 1);
+SET @id_pedido_10 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_10, 11, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_10, 10, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_11 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_11, 12, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_11, 7, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_11, 6, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_12 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_12, 10, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_12, 13, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (10, 1);
+SET @id_pedido_13 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_13, 12, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_13, 14, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (8, 1);
+SET @id_pedido_14 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_14, 11, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_14, 6, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (7, 1);
+SET @id_pedido_15 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_15, 14, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_15, 3, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_16 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_16, 10, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_16, 12, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_17 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_17, 13, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_17, 15, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (7, 1);
+SET @id_pedido_18 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_18, 11, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_18, 10, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_19 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_19, 12, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_19, 14, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_20 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_20, 11, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_20, 6, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (1, 1);
+SET @id_pedido_01 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_01, 3, 2);  
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_01, 11, 1);  
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (1, 2);
+SET @id_pedido_02 = LAST_INSERT_ID();
+
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_02, 11, 2);  
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_02, 12, 1);  
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (1, 1);
+SET @id_pedido_03 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_03, 10, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_03, 12, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (3, 2);
+SET @id_pedido_04 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_04, 15, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_04, 10, 5);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (4, 2);
+SET @id_pedido_05 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_05, 11, 3);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_05, 13, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_06 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_06, 7, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_06, 6, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_07 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_07, 10, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_07, 13, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (10, 1);
+SET @id_pedido_08 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_08, 12, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_08, 14, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (8, 1);
+SET @id_pedido_09 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_09, 11, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_09, 6, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (7, 1);
+SET @id_pedido_010 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_010, 14, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_010, 3, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_011 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_011, 10, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_011, 12, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_012 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_012, 13, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_012, 15, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (7, 1);
+SET @id_pedido_013 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_013, 11, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_013, 10, 2);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (6, 1);
+SET @id_pedido_014 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_014, 12, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_014, 7, 2);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_014, 6, 1);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO pedidos (id_cliente, id_forma_pagamento) VALUES (9, 1);
+SET @id_pedido_015 = LAST_INSERT_ID();
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_015, 10, 1);
+INSERT INTO itens_pedido (id_pedido, id_produto, quantidade) VALUES (@id_pedido_015, 13, 2);
+COMMIT;
+
+
+DELIMITER !GATILHO!
+-- Trigger que verifica se um novo cliente tem pelo menos 18 anos antes de inseri-lo na tabela de clientes.
+CREATE TRIGGER VerificarIdade
+BEFORE INSERT ON clientes
+FOR EACH ROW
+BEGIN
+    IF DATEDIFF(CURRENT_DATE(), NEW.data_nascimento) < 6570 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Clientes devem ter pelo menos 18 anos.';
+    END IF;
+END;
+!GATILHO!
+-- Trigger que atualiza o estoque do produto após a inserção de um novo item de pedido.
+CREATE TRIGGER AtualizarEstoque
+AFTER INSERT ON itens_pedido
+FOR EACH ROW
+BEGIN
+    UPDATE produto
+    SET quantidade_em_estoque = quantidade_em_estoque - NEW.quantidade
+    WHERE id_produto = NEW.id_produto
+    AND quantidade_em_estoque >= NEW.quantidade;
+END;
+!GATILHO!
+-- Trigger que impede a exclusão de clientes que possuem pedidos pendentes.
+CREATE TRIGGER VerificarPagamentosPendentes
+BEFORE DELETE ON clientes
+FOR EACH ROW
+BEGIN
+    DECLARE total_pagamentos INT;
+    SELECT COUNT(*) INTO total_pagamentos
+    FROM pedidos
+    WHERE id_cliente = OLD.id_cliente;
+    IF total_pagamentos > 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Não é possível excluir clientes com pagamentos pendentes.';
+    END IF;
+END;
+!GATILHO!
+-- Trigger que atualiza o total de vendas de uma categoria sempre que um novo item de pedido é inserido.
+CREATE TRIGGER AtualizarTotalVendas
+AFTER INSERT ON itens_pedido
+FOR EACH ROW
+BEGIN
+    UPDATE categoria
+    SET total_vendas = total_vendas + NEW.quantidade
+    WHERE id_categoria = (
+        SELECT id_categoria
+        FROM produto
+        WHERE id_produto = NEW.id_produto
+    );
+END;
+!GATILHO!
+-- Trigger que impede a atualização de preços de produtos para valores negativos ou nulos.
+CREATE TRIGGER EvitarPrecosNegativos
+BEFORE UPDATE ON produto
+FOR EACH ROW
+BEGIN
+    IF NEW.preco <= 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Não é permitido definir preços negativos ou nulos.';
+    END IF;
+END;
+!GATILHO!
+DELIMITER ;
