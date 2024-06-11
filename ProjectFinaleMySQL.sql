@@ -637,3 +637,94 @@ JOIN pedidos pe ON cl.id_cliente = pe.id_cliente
 WHERE MONTH(pe.data_pedido) = MONTH(CURRENT_DATE()) AND YEAR(pe.data_pedido) = YEAR(CURRENT_DATE())
 GROUP BY cl.id_cliente, cliente
 ORDER BY total_pedidos DESC;
+
+-- Lista todos os clientes e seus pedidos:
+CREATE VIEW vw_clientes_pedidos AS
+SELECT c.id_cliente AS cliente_id, c.nome_completo, c.apelido, c.cpf, c.data_nascimento, c.telefone, c.email, c.bairro, c.cidade, c.estado,
+       p.id_pedido, p.data_pedido, p.id_cliente AS pedido_cliente_id, p.id_forma_pagamento
+FROM clientes c
+JOIN pedidos p ON c.id_cliente = p.id_cliente;
+SELECT cliente_id, nome_completo, apelido, cpf, data_nascimento, telefone, email, bairro, cidade, estado,
+       id_pedido, data_pedido, pedido_cliente_id, id_forma_pagamento
+FROM vw_clientes_pedidos;
+
+-- Produtos mais vendidos:
+CREATE VIEW vw_produtos_mais_vendidos AS
+SELECT pr.nome, c.total_vendas AS total_vendido
+FROM produto pr
+JOIN categoria c ON pr.id_categoria = c.id_categoria
+ORDER BY total_vendido DESC;
+SELECT nome, total_vendido
+FROM vw_produtos_mais_vendidos;
+
+-- Clientes com mais de 18 anos:
+CREATE VIEW vw_pedidos_adultos AS
+SELECT p.*
+FROM pedidos p
+JOIN clientes c ON p.id_cliente = c.id_cliente
+WHERE YEAR(CURRENT_DATE()) - YEAR(c.data_nascimento) >= 18;
+
+-- Recheios Populares:
+CREATE VIEW vw_recheios_populares AS
+SELECT r.nome, COUNT(rp.id_produto) AS total_utilizado
+FROM recheio r
+JOIN recheio_produto rp ON r.id_recheio = rp.id_recheio
+GROUP BY r.nome
+ORDER BY total_utilizado DESC;
+
+-- Produtos Sem Venda:
+CREATE VIEW vw_produtos_sem_venda AS
+SELECT pr.nome
+FROM produto pr
+LEFT JOIN itens_pedido ip ON pr.id_produto = ip.id_produto
+WHERE ip.id_produto IS NULL;
+
+-- Clientes que mais compram bebidas:
+CREATE VIEW vw_clientes_mais_pedem_bebidas AS
+SELECT c.nome_completo, COUNT(ip.id_produto) AS total_bebidas
+FROM clientes c
+JOIN pedidos p ON c.id_cliente = p.id_cliente
+JOIN itens_pedido ip ON p.id_pedido = ip.id_pedido
+JOIN produto pr ON ip.id_produto = pr.id_produto
+WHERE pr.id_categoria = 5  
+GROUP BY c.nome_completo
+ORDER BY total_bebidas DESC;
+
+-- Pedidos realizados no último Mês:
+CREATE VIEW vw_pedidos_ultimo_mes AS
+SELECT *
+FROM pedidos
+WHERE MONTH(data_pedido) = MONTH(CURRENT_DATE()) AND YEAR(data_pedido) = YEAR(CURRENT_DATE());
+
+-- Clientes e seus Pedidos no último Mês:
+CREATE VIEW vw_clientes_pedidos_ultimo_mes AS
+SELECT c.id_cliente AS cliente_id, c.nome_completo, c.apelido, c.cpf, c.data_nascimento, c.telefone, c.email, c.bairro, c.cidade, c.estado,
+       p.id_pedido, p.data_pedido, p.id_cliente AS pedido_cliente_id, p.id_forma_pagamento
+FROM clientes c
+JOIN pedidos p ON c.id_cliente = p.id_cliente
+WHERE MONTH(p.data_pedido) = MONTH(CURRENT_DATE()) AND YEAR(p.data_pedido) = YEAR(CURRENT_DATE());
+
+-- Total de Vendas por Categoria no último Mês:
+CREATE VIEW vw_total_vendas_categoria_ultimo_mes AS
+SELECT c.nome AS categoria, SUM(ip.quantidade) AS total_vendido
+FROM categoria c
+JOIN produto pr ON c.id_categoria = pr.id_categoria
+LEFT JOIN itens_pedido ip ON pr.id_produto = ip.id_produto
+LEFT JOIN pedidos p ON ip.id_pedido = p.id_pedido
+WHERE MONTH(p.data_pedido) = MONTH(CURRENT_DATE()) AND YEAR(p.data_pedido) = YEAR(CURRENT_DATE())
+GROUP BY c.nome
+ORDER BY total_vendido DESC;
+
+-- Total de Vendas por Categoria no último ano:
+CREATE VIEW Total_Vendas_Por_Categoria_Ultimo_Ano AS
+SELECT 
+    c.nome AS categoria,
+    YEAR(p.data_pedido) AS ano,
+    COUNT(ip.id_item) AS total_vendas
+FROM pedidos p
+JOIN itens_pedido ip ON p.id_pedido = ip.id_pedido
+JOIN produto pr ON ip.id_produto = pr.id_produto
+JOIN categoria c ON pr.id_categoria = c.id_categoria
+WHERE YEAR(p.data_pedido) = YEAR(CURDATE()) - 1
+GROUP BY c.nome, YEAR(p.data_pedido)
+ORDER BY c.nome, YEAR(p.data_pedido);
