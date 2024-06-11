@@ -528,3 +528,112 @@ BEGIN
 END;
 !GATILHO!
 DELIMITER ;
+
+-- Consulta de Total de Pedidos por Cliente e Mês:
+SELECT 
+    cl.id_cliente,
+    cl.nome_completo,
+    MONTH(pe.data_pedido) 
+AS  
+    mes,
+    COUNT(pe.id_pedido)
+AS 
+    total_pedidos 
+FROM clientes cl
+JOIN pedidos pe ON cl.id_cliente = pe.id_cliente
+WHERE YEAR(pe.data_pedido) = YEAR(CURDATE())
+GROUP BY cl.id_cliente, mes
+ORDER BY total_pedidos DESC;
+
+-- Consulta do Valor Total de Vendas
+SELECT SUM(preco * quantidade) AS valor_total_venda FROM produto
+JOIN itens_pedido ON produto.id_produto = itens_pedido.id_produto;
+
+-- Consulta de Quantidade de Vendas por Produto (em ordem crescente)
+SELECT p.nome 
+AS 
+    pastel,
+    COUNT(ip.id_item)
+AS quantidade_vendas
+FROM produto p
+JOIN itens_pedido ip ON p.id_produto = ip.id_produto
+GROUP BY p.nome
+ORDER BY quantidade_vendas ASC;
+
+-- Consulta de Pedidos de Pastéis por Clientes Maiores de 18 Anos
+SELECT
+    pe.id_pedido,
+    p.nome AS nome_do_pastel,
+    cl.nome_completo,
+    TIMESTAMPDIFF(YEAR, cl.data_nascimento, CURDATE()) AS idade
+FROM produto p
+JOIN categoria c ON p.id_categoria = c.id_categoria
+JOIN recheio_produto rp ON p.id_produto = rp.id_produto
+JOIN recheio r ON rp.id_recheio = r.id_recheio
+JOIN itens_pedido ip ON p.id_produto = ip.id_produto
+JOIN pedidos pe ON ip.id_pedido = pe.id_pedido
+JOIN clientes cl ON pe.id_cliente = cl.id_cliente
+WHERE
+    c.id_categoria = 2 
+AND TIMESTAMPDIFF(YEAR, cl.data_nascimento, CURDATE()) > 18;
+
+-- Liste todos os pastéis que possuem bacon e/ou queijo em seu recheio.
+SELECT 
+    nome AS nome_pastel
+FROM recheio_produto AS rp
+JOIN produto AS pr ON pr.id_produto = rp.id_produto
+WHERE pr.id_recheio IN (11, 3);
+select*from recheio_produto;
+
+-- Liste quais são os pastéis mais vendidos, incluindo a quantidade de vendas em ordem decrescente.
+SELECT p.*
+FROM pedidos p
+WHERE EXISTS (
+    SELECT 1
+    FROM itens_pedido ip
+    JOIN produto pr ON ip.id_produto = pr.id_produto
+    WHERE pr.id_categoria IN (1, 2)  
+      AND ip.id_pedido = p.id_pedido
+)
+AND EXISTS (
+    SELECT 1
+    FROM itens_pedido ip2
+    JOIN produto pr2 ON ip2.id_produto = pr2.id_produto
+    WHERE pr2.id_categoria = 5  
+      AND ip2.id_pedido = p.id_pedido
+);
+
+-- Liste os nomes de todos os pastéis veganos vendidos para pessoas com mais de 18 anos.
+SELECT
+    p.nome AS nome_do_pastel
+FROM
+    produto p
+JOIN categoria c ON p.id_categoria = c.id_categoria
+JOIN recheio_produto rp ON p.id_produto = rp.id_produto
+JOIN recheio r ON rp.id_recheio = r.id_recheio
+JOIN itens_pedido ip ON p.id_produto = ip.id_produto
+JOIN pedidos pe ON ip.id_pedido = pe.id_pedido
+JOIN clientes cl ON pe.id_cliente = cl.id_cliente
+WHERE
+    c.id_categoria = 2 
+    AND TIMESTAMPDIFF(YEAR, cl.data_nascimento, CURDATE()) > 18;
+
+-- Liste os clientes com maior número de pedidos realizados em 1 ano agrupados por mês
+SELECT 
+    cl.id_cliente,
+    cl.nome_completo,
+    MONTH(pe.data_pedido) AS mes,
+    COUNT(pe.id_pedido) AS total_pedidos
+FROM clientes cl
+JOIN pedidos pe ON cl.id_cliente = pe.id_cliente
+WHERE  YEAR(pe.data_pedido) = YEAR(CURDATE())
+GROUP BY cl.id_cliente, mes
+ORDER BY total_pedidos DESC;
+
+-- Retorna a quantidade total de pedidos realizados por cada cliente no último mês:
+SELECT cl.nome_completo AS cliente, COUNT(pe.id_pedido) AS total_pedidos
+FROM clientes cl
+JOIN pedidos pe ON cl.id_cliente = pe.id_cliente
+WHERE MONTH(pe.data_pedido) = MONTH(CURRENT_DATE()) AND YEAR(pe.data_pedido) = YEAR(CURRENT_DATE())
+GROUP BY cl.id_cliente, cliente
+ORDER BY total_pedidos DESC;
